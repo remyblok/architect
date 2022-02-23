@@ -27,7 +27,7 @@ header {
   padding-top: 40px;
   padding-bottom: 40px;
   font-family: 'Architects Daughter', 'Helvetica Neue', Helvetica, Arial, serif;
-  background: #2e7bcf url(../images/header-bg.jpg) 0 0 repeat-x;
+  background: #392955 url(../images/header-bg.jpg) 0 0 repeat;
   border-bottom: solid 1px #275da1;
 }
 
@@ -49,7 +49,7 @@ header h2 {
   font-size: 26px;
   font-weight: normal;
   line-height: 1.3;
-  color: #9ddcff;
+  color: #a895cb;
   letter-spacing: 0;
 }
 
@@ -445,6 +445,14 @@ footer a:hover {
     padding-right: 0;
     margin-left: 0;
     content: none;
+  }
+  #main-content h1,
+  #main-content h2,
+  #main-content h3,
+  #main-content h4,
+  #main-content h5,
+  #main-content h6 {
+    text-indent: 0;
   }
 }
 
