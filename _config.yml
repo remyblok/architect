@@ -3,3 +3,7 @@ description: Architect Dark is a theme for GitHub Pages.
 show_downloads: true
 google_analytics:
 theme: jekyll-theme-architect-dark
+
+github:
+  is_project_page: true
+  repository_url: https://github.com/remyblok/architect

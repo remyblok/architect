@@ -2,6 +2,30 @@
 @import "rouge-base16-dark";
 @import url('https://fonts.googleapis.com/css?family=Architects+Daughter');
 
+//@media only screen and (max-width: 959px) { }					          		  /* Smaller than standard 960 (devices and browsers) */
+//@media only screen and (min-width: 768px) and (max-width: 959px) { }	/* Tablet Portrait size to standard 960 (devices and browsers) */
+//@media only screen and (max-width: 767px) { }         								/* All Mobile Sizes (devices and browser) */
+//@media only screen and (min-width: 480px) and (max-width: 767px) { }	/* Mobile Landscape Size to Tablet Portrait (devices and browsers) */
+//@media only screen and (max-width: 479px) { }					            		/* Mobile Portrait Size to Mobile Landscape Size (devices and browsers) */
+
+@mixin media($breakpoint) {
+  @if($breakpoint == "tablet")  {
+    @media only screen and (min-width: 768px) and (max-width: 959px) { 
+      @content 
+    }
+  }
+  @if($breakpoint == "phone")  {
+    @media only screen and (max-width: 767px) { 
+      @content 
+    }
+  }
+}
+@mixin dark {
+  @media (prefers-color-scheme: dark) {
+    @content
+  }
+}
+
 /* LAYOUT STYLES */
 body {
   font-family: 'Helvetica Neue', Helvetica, Arial, serif;
@@ -10,18 +34,40 @@ body {
   line-height: 1.5;
   color: #666;
   background: #fafafa url(../images/body-bg.jpg) 0 0 repeat;
+
+  @include dark {
+    background: #191919 url(../images/body-bg-dark.jpg) 0 0 repeat;
+    color: #fafafa;
+  }
 }
 
 p {
   margin-top: 0;
 }
-
 a {
   color: #a895cb;
+
+  &:hover {
+    color: #543c7b;
+  }
+
+  &.button {
+    width: 134px;
+    height: 58px;
+    padding-top: 22px;
+    padding-left: 68px;
+    font-family: 'Architects Daughter', 'Helvetica Neue', Helvetica, Arial, serif;
+    font-size: 23px;
+    line-height: 1.2;
+    color: #fff;
+
+    small {
+      display: block;
+      font-size: 11px;
+    }
+  }
 }
-a:hover {
-  color: #543c7b;
-}
+
 
 header {
   padding-top: 40px;
@@ -29,46 +75,110 @@ header {
   font-family: 'Architects Daughter', 'Helvetica Neue', Helvetica, Arial, serif;
   background: #392955 url(../images/header-bg.jpg) 0 0 repeat;
   border-bottom: solid 1px #392955;
+
+  h1, h2{
+    margin-top: 0;
+    font-weight: normal;
+    max-width: 690px;
+
+    @include media(tablet) {
+      width: 340px;
+    }
+    @include media(phone) {
+      width: 100%;
+    }
+  }
+
+  h1 {
+    margin-bottom: 0.2em;
+    font-size: 72px;
+    line-height: 1;
+    color: #fafafa;
+    letter-spacing: -1px;
+
+    @include media(tablet) {
+      font-size: 60px;
+    }
+    @include media(phone) {
+      font-size: 48px;
+    }
+  }
+  
+  h2 {
+    margin-bottom: 0;
+    font-size: 26px;
+    line-height: 1.3;
+    color: #a895cb;
+    letter-spacing: 0;
+
+    @include media(tablet) {
+      font-size: 30px;
+    }
+    @include media(phone) {
+      font-size: 24px;
+    }
+  }
+
+  a.button {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background: transparent url(../images/github-button.png) 0 0 no-repeat;
+  }
+
+  @include media(phone) {
+    padding: 20px 0;
+    
+    .inner {
+        position: relative;
+    }
+
+    a.button {
+      position: relative;
+      display: inline-block;
+      width: auto;
+      height: auto;
+      padding: 5px 10px;
+      margin-top: 15px;
+      font-size: 13px;
+      line-height: 1;
+      color: #543c7b;
+      text-align: center;
+      background-color: #a895cb;
+      background-image: none;
+      border-radius: 5px;
+      -moz-border-radius: 5px;
+      -webkit-border-radius: 5px;
+
+      small {
+        display: inline;
+        font-size: 13px;
+      }
+    }
+  }
 }
 
-header h1 {
-  margin-top: 0;
-  margin-bottom: 0.2em;
-  font-size: 72px;
-  font-weight: normal;
-  line-height: 1;
-  color: #fafafa;
-  letter-spacing: -1px;
-}
-
-header h2 {
-  margin-top: 0;
-  margin-bottom: 0;
-  font-size: 26px;
-  font-weight: normal;
-  line-height: 1.3;
-  color: #a895cb;
-  letter-spacing: 0;
-}
 
 .inner {
   position: relative;
   width: 940px;
   margin: 0 auto;
+
+  @include media(tablet) {
+    width: 740px;
+  }
+  @include media(phone) {
+    width: 93%;
+  }
 }
 
 #content-wrapper {
   padding-top: 30px;
   border-top: solid 1px #fff;
-}
 
-#main-content {
-  float: left;
-  width: 690px;
-}
-
-#main-content img {
-  max-width: 100%;
+  @include dark{
+    border-top: solid 1px #313131;
+  }
 }
 
 aside#sidebar {
@@ -79,57 +189,58 @@ aside#sidebar {
   font-size: 12px;
   line-height: 1.3;
   background: transparent url(../images/sidebar-bg.jpg) 0 0 no-repeat;
-}
 
-aside#sidebar p.repo-owner,
-aside#sidebar p.repo-owner a {
-  font-weight: bold;
+  p.repo-owner, p.repo-owner a {
+    font-weight: bold;
+  }
+
+  a.button {
+    display: block;
+    width: 138px;
+    padding-left: 64px;
+    margin-bottom: 20px;
+    font-size: 21px;
+    background: transparent url(../images/download-button.png) 0 0 no-repeat;
+  }
+
+  @include dark {
+    background: transparent url(../images/sidebar-bg-dark.jpg) 0 0 no-repeat;
+  }
+  @include media(phone) {
+    width: 100% !important;
+    float: none;
+    min-height: 0;
+    padding: 20px 0;
+    margin-top: 20px;
+    background-image: none;
+    border-top: solid 1px #ddd;
+
+    a.button {
+      display: none;
+    }
+  }
 }
 
 #downloads {
   margin-bottom: 40px;
 }
 
-a.button {
-  width: 134px;
-  height: 58px;
-  padding-top: 22px;
-  padding-left: 68px;
-  font-family: 'Architects Daughter', 'Helvetica Neue', Helvetica, Arial, serif;
-  font-size: 23px;
-  line-height: 1.2;
-  color: #fff;
-}
-a.button small {
-  display: block;
-  font-size: 11px;
-}
-header a.button {
-  position: absolute;
-  top: 0;
-  right: 0;
-  background: transparent url(../images/github-button.png) 0 0 no-repeat;
-}
-aside a.button {
-  display: block;
-  width: 138px;
-  padding-left: 64px;
-  margin-bottom: 20px;
-  font-size: 21px;
-  background: transparent url(../images/download-button.png) 0 0 no-repeat;
-}
-
 code, pre {
   margin-bottom: 30px;
   font-family: Monaco, "Bitstream Vera Sans Mono", "Lucida Console", Terminal, monospace;
   font-size: 13px;
-  color:#333;
   overflow-x:auto;
 }
 
 code {
   padding: 0 3px;
   border: solid 1px #dbe7f3;
+  color:#333;
+
+  @include dark {
+    border: solid 1px #313131;
+    color: #d6d4d4;
+  }
 }
 
 pre {
@@ -139,6 +250,10 @@ pre {
   background: #3A3C42;
   color:#f8f8f2;
   border: solid 1px #f2f2f2;
+
+  @include dark {
+    border: solid 1px #1f1f1f;
+  }
 
   li & {
     margin-left:-60px;
@@ -151,11 +266,6 @@ pre code {
   border: none;
 }
 
-ul, ol, dl {
-  margin-bottom: 20px;
-}
-
-
 /* COMMON STYLES */
 
 hr {
@@ -164,11 +274,19 @@ hr {
   margin-bottom: 1em;
   border: 0;
   border-top: solid 1px #ddd;
+
+  @include dark {
+    border-top: solid 1px #313131;
+  }
 }
 
 table {
   width: 100%;
   border: 1px solid #ebebeb;
+
+  @include dark {
+    border: 1px solid #313131;
+  }
 }
 
 th {
@@ -179,121 +297,112 @@ td {
   font-weight: 300;
   text-align: center;
   border: 1px solid #ebebeb;
+
+  @include dark {
+    border: 1px solid #313131;
+  }
 }
 
 form {
   padding: 20px;
   background: #f2f2f2;
 
+  @include dark {
+    background: #313131;
+  }
 }
-
 
 /* GENERAL ELEMENT TYPE STYLES */
 
-#main-content h1 {
-  margin-top: 0;
-  margin-bottom: 0;
-  font-family: 'Architects Daughter', 'Helvetica Neue', Helvetica, Arial, serif;
-  font-size: 2.8em;
-  font-weight: normal;
-  color: #474747;
-  text-indent: 6px;
-  letter-spacing: -1px;
+@mixin headers($properties...) {
+  @for $i from 1 to length($properties) + 1 {
+    $elem: nth($properties, $i);
+    h#{$i} {
+      font-size: #{nth($elem, 1)};
+      font-weight: #{nth($elem, 2)};
+      text-indent: #{nth($elem, 3)};
+      letter-spacing: #{nth($elem, 4)};
+
+      &:before{
+        margin-left: #{nth($elem, 5)};
+        content: "#{str-slice('//////', 1, $i)}";
+        font-weight: bold;
+        letter-spacing: 0px;
+      }
+    }
+  }
 }
 
-#main-content h1:before {
-  padding-right: 0.3em;
-  margin-left: -0.9em;
-  color: #a895cb;
-  content: "/";
-}
+#main-content{
+  float: left;
+  width: 690px;
 
-#main-content h2 {
-  margin-bottom: 8px;
-  font-family: 'Architects Daughter', 'Helvetica Neue', Helvetica, Arial, serif;
-  font-size: 22px;
-  font-weight: bold;
-  color: #474747;
-  text-indent: 4px;
-}
-#main-content h2:before {
-  padding-right: 0.3em;
-  margin-left: -1.5em;
-  content: "//";
-  color: #a895cb;
-}
+  @include media(tablet) {
+    width: 490px;
+  }
+  @include media(phone) {
+    width: 100% !important;
+    float: none;
+  }
 
-#main-content h3 {
-  margin-top: 24px;
-  margin-bottom: 8px;
-  font-family: 'Architects Daughter', 'Helvetica Neue', Helvetica, Arial, serif;
-  font-size: 18px;
-  font-weight: bold;
-  color: #474747;
-  text-indent: 3px;
-}
+  // font-size, font-weight, text-indent, letter-spacing, margin-left
+  $h1: 2.8em normal 6px -1px -0.9em;
+  $h2: 22px bold 4px 0px -1.5em;
+  $h3: 18px bold 3px 0px -2em;
+  $h4: 16px bold 3px 1px -2.8em;
+  $h5: 15px bold 3px 1px -3.2em;
+  $h6: 15px normal 3px 1px -3.7em;
+  @include headers($h1, $h2, $h3, $h4, $h5, $h6);
 
-#main-content h3:before {
-  padding-right: 0.3em;
-  margin-left: -2em;
-  content: "///";
-  color: #a895cb;
-}
+  h1, h2, h3, h4, h5, h6{
+    font-family: 'Architects Daughter', 'Helvetica Neue', Helvetica, Arial, serif;
+    color: #474747;
+    margin-bottom: 8px;
 
-#main-content h4 {
-  margin-bottom: 8px;
-  font-family: 'Architects Daughter', 'Helvetica Neue', Helvetica, Arial, serif;
-  font-size: 15px;
-  font-weight: bold;
-  color: #474747;
-  text-indent: 3px;
-}
+    @include dark {
+        color: #b3b3b3;
+    }
+    @include media(phone) {
+      text-indent: 0;
+    }
 
-h4:before {
-  padding-right: 0.3em;
-  margin-left: -2.8em;
-  content: "////";
-  color: #a895cb;
-}
+    &:before{
+      color: #a895cb;
+      padding-right: 0.3em;
 
-#main-content h5 {
-  margin-bottom: 8px;
-  font-family: 'Architects Daughter', 'Helvetica Neue', Helvetica, Arial, serif;
-  font-size: 14px;
-  color: #474747;
-  text-indent: 3px;
-}
-h5:before {
-  padding-right: 0.3em;
-  margin-left: -3.2em;
-  content: "/////";
-  color: #a895cb;
-}
+      @include media(tablet) {
+        padding-right: 0;
+        margin-left: 0;
+        content: none;
+      }
+      @include media(phone) {
+        padding-right: 0;
+        margin-left: 0;
+        content: none;
+        
+      }
+    }
+  }
+  
+  h1 {
+    margin-top: 0;
+    margin-bottom: 0;
+  }
 
-#main-content h6 {
-  margin-bottom: 8px;
-  font-family: 'Architects Daughter', 'Helvetica Neue', Helvetica, Arial, serif;
-  font-size: .8em;
-  color: #474747;
-  text-indent: 3px;
-}
-h6:before {
-  padding-right: 0.3em;
-  margin-left: -3.7em;
-  content: "//////";
-  color: #a895cb;
+  img {
+    max-width: 100%;
+  }
 }
 
 p {
   margin-bottom: 20px;
+  a {
+    font-weight: 400;
+  }
 }
 
 a {
   text-decoration: none;
-}
-
-p a {
-  font-weight: 400;
 }
 
 blockquote {
@@ -301,6 +410,10 @@ blockquote {
   margin-bottom: 20px;
   font-size: 15px;
   border-left: 10px solid #543c7b;
+}
+
+ul, ol, dl {
+  margin-bottom: 20px;
 }
 
 ul {
@@ -326,13 +439,14 @@ footer {
   margin-top: 40px;
   font-size: 13px;
   color: #aaa;
-}
 
-footer a {
-  color: #666;
-}
-footer a:hover {
-  color: #444;
+  a {
+    color: #666;
+
+    &:hover {
+      color: #444;
+    }
+  }
 }
 
 /* MISC */
@@ -347,165 +461,3 @@ footer a:hover {
 .clearfix {display: inline-block;}
 * html .clearfix {height: 1%;}
 .clearfix {display: block;}
-
-/* #Media Queries
-================================================== */
-
-@media (prefers-color-scheme: dark) {
-  body {
-    background: #191919 url(../images/body-bg-dark.jpg) 0 0 repeat;
-    color: #fafafa;
-  }
-
-  aside#sidebar {
-    background: transparent url(../images/sidebar-bg-dark.jpg) 0 0 no-repeat;
-  }
-
-  #content-wrapper {
-    border-top: solid 1px #000;
-  }
-  
-  code {
-    border: solid 1px #1f1f1f;
-  }
-  
-  pre {
-    border: solid 1px #1f1f1f;
-  }
-  
-  hr {
-    border-top: solid 1px #313131;
-  }
-  
-  table {
-    border: 1px solid #313131;
-  }
-  
-  td {
-    border: 1px solid #313131;
-  }
-  
-  form {
-    background: #313131;
-  }
-  
-  #main-content {
-    h1, h2, h3, h4, h5, h6 {
-      color: #b3b3b3;
-    }
-  }
-}
-
-/* Smaller than standard 960 (devices and browsers) */
-@media only screen and (max-width: 959px) { }
-
-/* Tablet Portrait size to standard 960 (devices and browsers) */
-@media only screen and (min-width: 768px) and (max-width: 959px) {
-  .inner {
-    width: 740px;
-  }
-  header h1, header h2 {
-    width: 340px;
-  }
-  header h1 {
-    font-size: 60px;
-  }
-  header h2 {
-    font-size: 30px;
-  }
-  #main-content {
-    width: 490px;
-  }
-  #main-content h1:before,
-  #main-content h2:before,
-  #main-content h3:before,
-  #main-content h4:before,
-  #main-content h5:before,
-  #main-content h6:before {
-    padding-right: 0;
-    margin-left: 0;
-    content: none;
-  }
-}
-
-/* All Mobile Sizes (devices and browser) */
-@media only screen and (max-width: 767px) {
-  .inner {
-    width: 93%;
-  }
-  header {
-    padding: 20px 0;
-  }
-  header .inner {
-    position: relative;
-  }
-  header h1, header h2 {
-    width: 100%;
-  }
-  header h1 {
-    font-size: 48px;
-  }
-  header h2 {
-    font-size: 24px;
-  }
-  header a.button {
-    position: relative;
-    display: inline-block;
-    width: auto;
-    height: auto;
-    padding: 5px 10px;
-    margin-top: 15px;
-    font-size: 13px;
-    line-height: 1;
-    color: #543c7b;
-    text-align: center;
-    background-color: #a895cb;
-    background-image: none;
-    border-radius: 5px;
-    -moz-border-radius: 5px;
-    -webkit-border-radius: 5px;
-  }
-  header a.button small {
-    display: inline;
-    font-size: 13px;
-  }
-  #main-content,
-  aside#sidebar {
-    float: none;
-    width: 100% ! important;
-  }
-  aside#sidebar {
-    min-height: 0;
-    padding: 20px 0;
-    margin-top: 20px;
-    background-image: none;
-    border-top: solid 1px #ddd;
-  }
-  aside#sidebar a.button {
-    display: none;
-  }
-  #main-content h1:before,
-  #main-content h2:before,
-  #main-content h3:before,
-  #main-content h4:before,
-  #main-content h5:before,
-  #main-content h6:before {
-    padding-right: 0;
-    margin-left: 0;
-    content: none;
-  }
-  #main-content h1,
-  #main-content h2,
-  #main-content h3,
-  #main-content h4,
-  #main-content h5,
-  #main-content h6 {
-    text-indent: 0;
-  }
-}
-
-/* Mobile Landscape Size to Tablet Portrait (devices and browsers) */
-@media only screen and (min-width: 480px) and (max-width: 767px) { }
-
-/* Mobile Portrait Size to Mobile Landscape Size (devices and browsers) */
-@media only screen and (max-width: 479px) { }
