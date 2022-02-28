@@ -50,13 +50,9 @@ body {
   ));
 }
 
-
-p {
-  margin-top: 0;
-}
-
 a {
   color: #a895cb;
+  text-decoration: none;
 
   &:hover {
     color: #543c7b;
@@ -168,7 +164,6 @@ header {
   }
 }
 
-
 .inner {
   position: relative;
   width: 940px;
@@ -206,13 +201,26 @@ aside#sidebar {
 
   a.button {
     display: block;
-    width: 138px;
+    width: 128px;
     padding-left: 70px;
     margin-bottom: 20px;
     font-size: 21px;
-    background: transparent url(../images/download-button.png) 0 0 no-repeat;
+    background: #392955 url(../images/bg-grid.png) 50% 50% repeat;
+    border: solid 2px #fff;
+    border-radius: 8px;
   }
 
+  a.button:before {
+    background: transparent url(../images/zip.png) no-repeat;
+    content: ' ';
+    display: block;
+    position: relative;
+    width: 69px;
+    height: 78px;
+    margin: -22px 0 0 -72px;
+    float: left;
+  }
+ 
   @include themeProperty((
     background-image: url(../images/sidebar-bg.jpg) url(../images/sidebar-bg-dark.jpg)
   ));
@@ -406,14 +414,12 @@ form {
 
 p {
   margin-bottom: 20px;
+  margin-top: 0;
   a {
     font-weight: 400;
   }
 }
 
-a {
-  text-decoration: none;
-}
 
 blockquote {
   padding: 0 0 0 30px;
