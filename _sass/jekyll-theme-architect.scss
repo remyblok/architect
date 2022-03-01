@@ -428,19 +428,25 @@ blockquote {
   border-left: 10px solid #543c7b;
 }
 
+::marker {
+  font-family: 'Architects Daughter', 'Helvetica Neue', Helvetica, Arial, serif;
+  color: #543c7b;
+  @include themeProperty((color: #543c7b #a895cb));
+}
+
 ul, ol, dl {
   margin-bottom: 20px;
 }
 
 ul {
-  list-style-position: inside;
-  list-style: disc;
+  list-style-position: outside;
+  list-style-type: '» ';
   padding-left: 20px;
 }
 
 ol {
-  list-style-position: inside;
-  list-style: decimal;
+  list-style-position: outside;
+  list-style-type: decimal;
   padding-left: 20px;
 }
 
