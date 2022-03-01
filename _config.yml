@@ -2,6 +2,7 @@ title: Architect Dark theme
 description: Architect Dark is a theme for GitHub Pages.
 show_downloads: true
 google_analytics:
+microsoft_appinsights: 
 theme: jekyll-theme-architect-dark
 
 github:
