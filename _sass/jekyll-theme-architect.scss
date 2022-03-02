@@ -1,6 +1,7 @@
 @import "normalize";
 @import "rouge-base16-dark";
 @import url('https://fonts.googleapis.com/css?family=Architects+Daughter');
+@import url('http://fonts.cdnfonts.com/css/cascadia-code');
 
 //@media only screen and (max-width: 959px) { }					          		  /* Smaller than standard 960 (devices and browsers) */
 //@media only screen and (min-width: 768px) and (max-width: 959px) { }	/* Tablet Portrait size to standard 960 (devices and browsers) */
@@ -250,7 +251,7 @@ aside#sidebar {
 
 code, pre {
   margin-bottom: 30px;
-  font-family: Monaco, "Bitstream Vera Sans Mono", "Lucida Console", Terminal, monospace;
+  font-family: "Cascadia Code", "Lucida Console", Terminal, monospace;
   font-size: 13px;
   overflow-x:auto;
 }
