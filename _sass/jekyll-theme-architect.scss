@@ -309,6 +309,7 @@ hr {
 table {
   width: 100%;
   text-align: left;
+
 }
 
 thead {
@@ -327,6 +328,7 @@ tr {
 
 th, td {
   padding: 0 0.5em;
+  vertical-align: top;
 }
 
 form {

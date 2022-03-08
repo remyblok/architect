@@ -59,7 +59,7 @@ end
 | out of stock | good and plenty   | nice  |
 | ok           | good `oreos`      | hmm   |
 | ok           | good `zoute` drop | yumm  |
-| sd sdfsdfsdf sdfsdfsdf sdfsdfsdf sdf sdfsdf sdfsdfsdfs df sdf  | sdfvsdfsdfsdf sdfsdfsdfsdf sdfsdfsdfsd fsf | rubish |
+| ok | sd sdfsdfsdf sdfsdfsdf sdfsdfsdf sdf sdfsdf sdfsdfsdfs df sdfasdasdas dasasd asdasdasd asdasdasd asdasdasd asdasdasdas | rubish |
 
 ### There's a horizontal rule below this.
 
