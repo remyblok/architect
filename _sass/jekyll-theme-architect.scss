@@ -308,24 +308,25 @@ hr {
 
 table {
   width: 100%;
-  border: 1px solid;
+  text-align: left;
+}
 
+thead {
+  border-bottom: 3px solid;
   @include themeProperty((
     border-color: $border-color
   ));
 }
 
-th {
-  font-weight: 500;
-}
-
-td {
-  font-weight: 300;
-  text-align: center;
-  border: 1px solid;
+tr {
+  border-bottom: 1px solid;
   @include themeProperty((
     border-color: $border-color
   ));
+}
+
+th, td {
+  padding: 0 0.5em;
 }
 
 form {
