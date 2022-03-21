@@ -4,6 +4,7 @@
 @import url('https://fonts.googleapis.com/css?family=Architects+Daughter');
 @import url('http://fonts.cdnfonts.com/css/cascadia-code');
 
+// switching themes by Christopher Kirk-Nielsen on  https://css-tricks.com/a-dry-approach-to-color-themes-in-css/
 @function light-dark($light, $dark) {
   // If light mode is --ON, we get the `initial` value thus the var() fallback is used, and the --OFF value is set to a whitespace, returning `$light  `. Vice-versa for dark mode.
   @return var(--light, #{ $light }) var(--dark, #{ $dark });
