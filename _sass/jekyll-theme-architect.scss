@@ -71,7 +71,7 @@ html:not(.theme-light):not(.theme-dark),
 
 /* LAYOUT STYLES */
 body {
-  font-family: 'Helvetica Neue', Helvetica, Arial, serif;
+  font-family: Arial, serif;
   font-size: 15px;
   font-weight: 400;
   line-height: 1.5;
@@ -92,7 +92,7 @@ a {
     height: 58px;
     padding-top: 22px;
     padding-left: 68px;
-    font-family: 'Architects Daughter', 'Helvetica Neue', Helvetica, Arial, serif;
+    font-family: 'Architects Daughter', Arial, serif;
     font-size: 23px;
     line-height: 1.2;
     color: var(--light-grey);
@@ -107,7 +107,7 @@ a {
 header {
   padding-top: 40px;
   padding-bottom: 40px;
-  font-family: 'Architects Daughter', 'Helvetica Neue', Helvetica, Arial, serif;
+  font-family: 'Architects Daughter', Arial, serif;
   background: var(--darker-purple) url(../images/bg-grid.png) 0 0 repeat;
   border-bottom: solid 1px var(--dark-purple);
 
@@ -384,7 +384,7 @@ form {
   @include headers($h1, $h2, $h3, $h4, $h5, $h6);
 
   h1, h2, h3, h4, h5, h6{
-    font-family: 'Architects Daughter', 'Helvetica Neue', Helvetica, Arial, serif;
+    font-family: 'Architects Daughter', Arial, serif;
     margin-bottom: 8px;
     color:#{ light-dark(var(--dark-purple), var(--light-grey)) };
 
@@ -393,7 +393,7 @@ form {
     }
 
     &:before{
-      color: var(--dark-purple);
+      color: #{ light-dark(var(--dark-purple), var(--light-purple)) };
       padding-right: 0.3em;
 
       @include media(tablet) {
@@ -438,7 +438,7 @@ blockquote {
 }
 
 ::marker {
-  font-family: 'Architects Daughter', 'Helvetica Neue', Helvetica, Arial, serif;
+  font-family: 'Architects Daughter', Arial, serif;
   color:#{ light-dark(var(--dark-purple), var(--light-purple)) };
 }
 
